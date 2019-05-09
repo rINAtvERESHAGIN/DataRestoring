@@ -1,7 +1,8 @@
 import {Type} from 'class-transformer';
 import {v4 as uuid} from 'uuid';
-// import {v4} from 'uuid';
+
 export class TableLIstModal {
+        id: number;
         field: string;
         data: string;
         previous: string;
