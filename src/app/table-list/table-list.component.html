@@ -1,44 +1,38 @@
-<!--which table you want to see-->
-<form clrForm [formGroup]="cFG">
-  <clr-select-container>
-    <select clrSelect required
-            name="choseTableName"
-            [formControl]="tableNameFC"
-            [formControlName]="'tableNameFCN'">
-      <option [selected]="'Select'" disabled [ngValue]="">Select table</option>
-      <option [ngValue]="name" *ngFor="let name of tableName">{{name.name}}</option>
-    </select>
-    <clr-control-error>This field is required!</clr-control-error>
-  </clr-select-container>
-</form>
-
-<ng-select>
-
-</ng-select>
-<!--Table for dynamic_model_data-->
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-lg-5">
     <clr-datagrid [(clrDgSelected)]="selectedObjectToRestore">
+      <clr-dg-placeholder>We couldn't find any data!</clr-dg-placeholder>
       <clr-dg-action-bar>
-        <div class="btn-group">
 
-          <button *ngIf="selectedObjectToRestore.length == 1"
+        <div class="clr-select-wrapper">
+          <select id="select-basic" class="clr-select" [(ngModel)]="tableNameFromSelect" (ngModelChange)="sendModalNameToGetData()">
+            <option [ngValue]="name"*ngFor="let name of tableName">{{name.name}}</option>
+          </select>
+        </div>
+
+
+        <div class="btn-group">
+          <button *ngIf="selectedObjectToRestore.length > 0"
                   type="button"
                   class="btn btn-sm btn-secondary"
                   (click)="onRestoreButton()">
-            <clr-icon shape="close"></clr-icon>
+            <clr-icon shape="check-circle"></clr-icon>
             Restored
           </button>
-
         </div>
+
       </clr-dg-action-bar>
 
-      <clr-dg-column>Field</clr-dg-column>
+      <clr-dg-column>
+        <ng-container *clrDgHideableColumn="{hidden:false}">Field</ng-container>
+      </clr-dg-column>
       <clr-dg-column>Data</clr-dg-column>
       <clr-dg-column>Previous</clr-dg-column>
-      <clr-dg-column>Changed</clr-dg-column>
-      <clr-dg-column>Logged</clr-dg-column>
-
+      <clr-dg-column>
+        <ng-container *clrDgHideableColumn="{hidden:false}">Changed</ng-container></clr-dg-column>
+      <clr-dg-column>
+        <ng-container *clrDgHideableColumn="{hidden:false}">Logged</ng-container>
+      </clr-dg-column>
 
       <clr-dg-row *clrDgItems="let data of dynamicTableData" [clrDgItem]="data">
         <clr-dg-cell>{{data.field}}</clr-dg-cell>
@@ -48,9 +42,13 @@
         <clr-dg-cell>{{data.logged.toLocaleDateString()}}</clr-dg-cell>
       </clr-dg-row>
 
-      <clr-dg-footer>{{dynamicTableData.length}} Student</clr-dg-footer>
+      <clr-dg-footer>
+        <clr-dg-column-toggle>
+          <clr-dg-column-toggle-title>Current Info!</clr-dg-column-toggle-title>
+          <clr-dg-column-toggle-button>All items!</clr-dg-column-toggle-button>
+        </clr-dg-column-toggle>
+        {{dynamicTableData.length}} Items
+      </clr-dg-footer>
     </clr-datagrid>
   </div>
 </div>
-
-

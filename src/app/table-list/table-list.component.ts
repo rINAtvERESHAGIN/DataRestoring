@@ -23,6 +23,8 @@ export class TableListComponent implements OnInit {
   dynamicTableData: TableLIstModal[] = []; // будет хранить данные которые приходят от динамической таблицы
   selectedObjectToRestore: TableLIstModal[] = [];
 
+  tableNameFromSelect: MyModel = new MyModel();
+
   // Choose forms
   cFG: FormGroup;
   tableNameFC: FormControl = new FormControl();
@@ -48,8 +50,26 @@ export class TableListComponent implements OnInit {
 
         })
       ).subscribe(response => {
-        this.tableName = response;
-      });
+      this.tableName = response;
+    });
+  }
+
+  sendModalNameToGetData() {
+    //  получаем имя таблицы , отправляем его на бек
+    console.log(this.tableNameFromSelect);
+    this.httpServiceTableList.sendDynamicNameToGetDataService(this.tableNameFromSelect)
+      .pipe(
+        tap(() => {
+
+        }),
+        finalize(() => {
+          console.log(this.dynamicTableData);
+          console.log(this.dynamicTableData[0].field);
+        })
+      ).subscribe(response => {
+      this.dynamicTableData = response;
+    });
+
   }
 
 //    button

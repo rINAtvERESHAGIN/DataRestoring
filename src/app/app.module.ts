@@ -9,10 +9,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {ROUTING} from './app.routing';
 
+import {NgSelectModule} from '@ng-select/ng-select';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    TableListComponent
+    TableListComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +28,8 @@ import {ROUTING} from './app.routing';
     ClarityModule,
     ClrInputModule,
     ClrSelectModule,
-    ROUTING
+    ROUTING,
+    NgSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

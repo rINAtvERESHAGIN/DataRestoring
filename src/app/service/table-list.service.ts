@@ -24,4 +24,10 @@ export class TableListService {
       );
   }
 
+  sendDynamicNameToGetDataService(myModel: MyModel) {
+    return this.http.post('http://127.0.0.1:8000/web/getDynamicTableData/', myModel)
+      .pipe(
+        map(response => plainToClass(TableLIstModal, response as Object[]))
+      );
+  }
 }
