@@ -3,13 +3,10 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup} from '@angular/for
 import {Dictionary} from 'async';
 import {MyModel} from '../modal/MyModel';
 import {TableLIstModal} from '../modal/TableLIstModal';
-import {TableListService} from '../service/table-list.service';
+import {TableListService} from '../service/table-list/table-list.service';
 import {finalize, tap} from 'rxjs/operators';
-
-
-export interface TableName extends Dictionary<AbstractControl> {
-  tableNameFCN: AbstractControl;
-}
+import {Cards} from '../modal/cards';
+import {RegisteredTable} from '../modal/registered_table';
 
 @Component({
   selector: 'app-table-list',
@@ -23,17 +20,12 @@ export class TableListComponent implements OnInit {
   dynamicTableData: TableLIstModal[] = []; // будет хранить данные которые приходят от динамической таблицы
   selectedObjectToRestore: TableLIstModal[] = [];
 
-  tableNameFromSelect: MyModel = new MyModel();
+  tableNameFromSelect: RegisteredTable = new RegisteredTable();
+
 
   // Choose forms
-  cFG: FormGroup;
-  tableNameFC: FormControl = new FormControl();
 
-  constructor(private builder: FormBuilder,
-              private httpServiceTableList: TableListService) {
-    this.cFG = this.builder.group({
-      tableNameFCN: this.tableNameFC,
-    } as TableName);
+  constructor(private httpServiceTableList: TableListService) {
   }
 
   ngOnInit() {
@@ -50,23 +42,24 @@ export class TableListComponent implements OnInit {
 
         })
       ).subscribe(response => {
+      // @ts-ignore
       this.tableName = response;
     });
   }
 
-  sendModalNameToGetData() {
+  sendModalNameToGetData(model: RegisteredTable) {
     //  получаем имя таблицы , отправляем его на бек
-    console.log(this.tableNameFromSelect);
-    this.httpServiceTableList.sendDynamicNameToGetDataService(this.tableNameFromSelect)
+    this.tableNameFromSelect = model;
+    console.log(model.dynamic_model);
+    this.httpServiceTableList.sendDynamicNameToGetDataService(model)
       .pipe(
         tap(() => {
 
         }),
         finalize(() => {
-          console.log(this.dynamicTableData);
-          console.log(this.dynamicTableData[0].field);
         })
       ).subscribe(response => {
+      // @ts-ignore
       this.dynamicTableData = response;
     });
 

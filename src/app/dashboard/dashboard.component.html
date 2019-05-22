@@ -1,10 +1,147 @@
-<div class="row">
-  <div class="col-lg-123">
-    <clr-datagrid>
-      <clr-dg-column>Id</clr-dg-column>
-      <clr-dg-column>Deposited money</clr-dg-column>
-      <clr-dg-column>Date of deposited</clr-dg-column>
+<!--4 cards with common info-->
+<div class="clr-row">
+  <div class="clr-col-lg-3">
+    <div class="card">
+      <div class="card-header">
+        <clr-icon shape="redo"></clr-icon>
+        Restored
+      </div>
+      <div class="card-block">
+        <div class="card-title">
+          Objects: {{cardsData.restored}}
+        </div>
+        <!--<div class="card-text">-->
+          <!---->
+        <!--</div>-->
+      </div>
+      <!--<div class="card-footer">-->
+        <!--<button class="btn btn-sm btn-link">Footer Action 1</button>-->
+        <!--<button class="btn btn-sm btn-link">Footer Action 2</button>-->
+      <!--</div>-->
+    </div>
+  </div>
+  <!--second-->
+  <div class="clr-col-lg-3">
+    <div class="card">
+      <div class="card-header">
+        <clr-icon shape="login"></clr-icon>
+        Come on logging
+      </div>
+      <div class="card-block">
+        <div class="card-title">
+          Objects: {{cardsData.logging}}
+        </div>
+        <!--<div class="card-text">-->
+          <!---->
+        <!--</div>-->
+      </div>
+      <!--<div class="card-footer">-->
+        <!--<button class="btn btn-sm btn-link">Footer Action 1</button>-->
+        <!--<button class="btn btn-sm btn-link">Footer Action 2</button>-->
+      <!--</div>-->
+    </div>
+  </div>
+  <!--third-->
+  <div class="clr-col-lg-3">
+    <div class="card">
+      <div class="card-header">
+        <clr-icon shape="table"></clr-icon>
+        Active tables
+      </div>
+      <div class="card-block">
+        <div class="card-title">
+          Tables: {{cardsData.tables}}
+        </div>
+        <!--<div class="card-text">-->
+          <!---->
+        <!--</div>-->
+      </div>
+      <!--<div class="card-footer">-->
+        <!--<button class="btn btn-sm btn-link">Footer Action 1</button>-->
+        <!--<button class="btn btn-sm btn-link">Footer Action 2</button>-->
+      <!--</div>-->
+    </div>
+  </div>
+  <!--fourth-->
+  <div class="clr-col-lg-3">
+    <div class="card">
+      <div class="card-header">
+        <clr-icon shape="hourglass"></clr-icon>
+        Last actions {{cardsData.changed.toLocaleDateString()}}
+      </div>
+      <div class="card-block">
+        <div class="card-title">
+          Data: {{cardsData.data}} {{cardsData.type_of}}
+        </div>
+        <!--<div class="card-text">-->
+          <!---->
+        <!--</div>-->
+      </div>
+      <!--<div class="card-footer">-->
+        <!--<button class="btn btn-sm btn-link">Footer Action 1</button>-->
+        <!--<button class="btn btn-sm btn-link">Footer Action 2</button>-->
+      <!--</div>-->
+    </div>
+  </div>
+</div>
+<!--Second row table and chart-->
+<div class="clr-row">
+  <div class="clr-col-lg-8">
+    <div class="card">
+      <div class="card-header">
+        All action
+      </div>
+      <div class="card-block">
+        <clr-datagrid>
+          <clr-dg-column>Table name</clr-dg-column>
+          <clr-dg-column>Data</clr-dg-column>
+          <clr-dg-column>Previous</clr-dg-column>
+          <clr-dg-column>Action</clr-dg-column>
 
-    </clr-datagrid>
+          <clr-dg-row *clrDgItems="let actionData of allActionList" [clrDgItem]="actionData">
+            <clr-dg-cell>{{actionData.table_name}}</clr-dg-cell>
+            <clr-dg-cell>{{actionData.data}}</clr-dg-cell>
+            <clr-dg-cell>{{actionData.previous}}</clr-dg-cell>
+            <clr-dg-cell>{{actionData.action}}</clr-dg-cell>
+          </clr-dg-row>
+        </clr-datagrid>
+
+      </div>
+    </div>
+  </div>
+  <!------------------------------------------------------------------->
+  <div class="clr-col-lg-4">
+    <div class="card">
+      <div class="card-header">
+        Recovery statistics
+      </div>
+      <div class="card-block">
+        <div id="chartContainer"
+        style="height: 370px;
+        width: 100%;
+        margin-left:auto;
+        margin-right:auto;">
+        </div>
+      </div>
+
+      <div class="card-footer">
+
+        <clr-dropdown>
+          <button type="button" class="dropdown-toggle btn btn-link" clrDropdownTrigger>
+            Choose time interval
+            <clr-icon shape="caret up"></clr-icon>
+          </button>
+
+          <clr-dropdown-menu  clrPosition="top-right" *clrIfOpen>
+            <h4 class="dropdown-header">Time interval</h4>
+            <button type="button" class="dropdown-item">Day</button>
+            <button type="button" class="dropdown-item">Week</button>
+            <button type="button" class="dropdown-item">Month</button>
+          </clr-dropdown-menu>
+        </clr-dropdown>
+
+      </div>
+
+    </div>
   </div>
 </div>
