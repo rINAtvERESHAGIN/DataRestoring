@@ -5,14 +5,14 @@
 
   <div class="clr-col-lg-3">
     <div class="card">
-      <div class="card-header">
-        Select table
+      <div class="card-header" style="font-size: 230%">
+        Выберите таблицу
       </div>
       <div class="card-block">
-        <clr-tree-node *ngFor="let instance of tableName">
+        <clr-tree-node *ngFor="let instance of tableName" style="font-size: 180%">
           <clr-icon shape="layers"></clr-icon>
-          {{instance.instance}}
-
+          <div>{{instance.instance}}_</div>
+          <span class="badge badge-blue">{{instance.models.length}}</span>
           <clr-tree-node *ngFor="let model of instance.models">
             <button
               (click)="sendModalNameToGetData(model)"
@@ -33,8 +33,8 @@
   <div class="clr-col-lg-9">
     <div class="card">
       <div class="card-header">
-        <div class="card-title">
-          Table: {{tableNameFromSelect.model}}
+        <div class="card-title" style="font-size: 180%">
+          Таблица: {{tableNameFromSelect.model}}
         </div>
       </div>
       <div class="card-block">
@@ -42,20 +42,21 @@
           <button *ngIf="selectedObjectToRestore.length > 0"
                   type="button"
                   class="btn btn-outline"
-                  (click)="onRestoreButton()">
-            <clr-icon shape="check-circle"></clr-icon>
-            Restore
+                  (click)="onRestoreButton()"
+                  style="font-size: 140%">
+            <clr-icon shape="check-circle" style="font-size: 180%"></clr-icon>
+            Восстановить
           </button>
 
           <clr-dropdown >
-            <button type="button" class="dropdown-toggle btn btn-outline" clrDropdownTrigger>
+            <button type="button" class="dropdown-toggle btn btn-outline" clrDropdownTrigger style="font-size: 140%">
               <clr-icon shape="justify-text"></clr-icon>
-              Display rows
+              Количество строк
               <clr-icon shape="caret down"></clr-icon>
             </button>
 
             <clr-dropdown-menu  clrPosition="bottom-right" *clrIfOpen>
-              <h4 class="dropdown-header" style="float: right">Time interval</h4>
+              <h4 class="dropdown-header" style="float: right">Строки</h4>
               <button type="button" class="dropdown-item" >10</button>
               <button type="button" class="dropdown-item" >50</button>
               <button type="button" class="dropdown-item" >100</button>
@@ -94,34 +95,34 @@
             <!--</div>-->
           <!--</clr-dg-action-bar>-->
 
-          <clr-dg-placeholder>The table is still empty or not selected!</clr-dg-placeholder>
+          <clr-dg-placeholder>Таблица не заполненна или не выбрана!</clr-dg-placeholder>
 
-          <clr-dg-column>
-            <ng-container *clrDgHideableColumn="{hidden:false}">Field</ng-container>
+          <clr-dg-column style="font-size: 150%">
+            <ng-container *clrDgHideableColumn="{hidden:false}">Поле</ng-container>
           </clr-dg-column>
-          <clr-dg-column>Data</clr-dg-column>
-          <clr-dg-column>Previous</clr-dg-column>
-          <clr-dg-column>
-            <ng-container *clrDgHideableColumn="{hidden:false}">Changed</ng-container></clr-dg-column>
-          <clr-dg-column>
-            <ng-container *clrDgHideableColumn="{hidden:false}">Logged</ng-container>
+          <clr-dg-column style="font-size: 150%">Данные</clr-dg-column>
+          <clr-dg-column style="font-size: 150%">Прежнее значение</clr-dg-column>
+          <clr-dg-column style="font-size: 150%">
+            <ng-container *clrDgHideableColumn="{hidden:false}">Изменено</ng-container></clr-dg-column>
+          <clr-dg-column style="font-size: 150%">
+            <ng-container *clrDgHideableColumn="{hidden:false}">Записан</ng-container>
           </clr-dg-column>
 
           <clr-dg-row *clrDgItems="let data of dynamicTableData" [clrDgItem]="data">
-            <clr-dg-cell>{{data.field}}</clr-dg-cell>
-            <clr-dg-cell>{{data.data}}</clr-dg-cell>
-            <clr-dg-cell>{{data.previous}}</clr-dg-cell>
-            <clr-dg-cell>{{data.changed.toLocaleDateString()}}</clr-dg-cell>
-            <clr-dg-cell>{{data.logged.toLocaleDateString()}}</clr-dg-cell>
+            <clr-dg-cell style="font-size: 150%">{{data.field}}</clr-dg-cell>
+            <clr-dg-cell style="font-size: 150%">{{data.data}}</clr-dg-cell>
+            <clr-dg-cell style="font-size: 150%">{{data.previous}}</clr-dg-cell>
+            <clr-dg-cell style="font-size: 150%">{{data.changed.toLocaleDateString()}}</clr-dg-cell>
+            <clr-dg-cell style="font-size: 150%">{{data.logged.toLocaleDateString()}}</clr-dg-cell>
           </clr-dg-row>
 
-          <clr-dg-footer>
+          <clr-dg-footer style="font-size: 180%">
             <clr-dg-column-toggle>
-              <clr-dg-column-toggle-title>Current Info!</clr-dg-column-toggle-title>
-              <clr-dg-column-toggle-button>All items!</clr-dg-column-toggle-button>
+              <clr-dg-column-toggle-title>Текущая информация!</clr-dg-column-toggle-title>
+              <clr-dg-column-toggle-button>Все столбцы</clr-dg-column-toggle-button>
             </clr-dg-column-toggle>
 
-            {{dynamicTableData.length}} Items
+            Количество элементов:{{dynamicTableData.length}}
           </clr-dg-footer>
         </clr-datagrid>
 

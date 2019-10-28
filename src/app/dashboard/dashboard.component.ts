@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.getAllActionComponetn();
     this.getAndSetCardsData();
-    this.drawChartsTest('Activity', 10, 10);
+    this.drawChartsTest('Активность действий', 10, 10);
   }
 
   //  получаем данные по всем активностям с таблицами

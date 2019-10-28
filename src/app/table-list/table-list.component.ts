@@ -39,7 +39,9 @@ export class TableListComponent implements OnInit {
 
         }),
         finalize(() => {
-
+          // console.log(this.tableName.length);
+          // console.log(this.tableName);
+          console.log(this.tableName[0].models);
         })
       ).subscribe(response => {
       // @ts-ignore

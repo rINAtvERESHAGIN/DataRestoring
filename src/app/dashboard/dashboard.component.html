@@ -2,13 +2,13 @@
 <div class="clr-row">
   <div class="clr-col-lg-3">
     <div class="card">
-      <div class="card-header">
+      <div class="card-header" style="font-size: 190%">
         <clr-icon shape="redo"></clr-icon>
-        Restored
+        Восстановлены
       </div>
       <div class="card-block">
-        <div class="card-title">
-          Objects: {{cardsData.restored}}
+        <div class="card-title" style="font-size: 180%">
+          Объекты: {{cardsData.restored}}
         </div>
         <!--<div class="card-text">-->
           <!---->
@@ -23,13 +23,13 @@
   <!--second-->
   <div class="clr-col-lg-3">
     <div class="card">
-      <div class="card-header">
+      <div class="card-header" style="font-size: 190%">
         <clr-icon shape="login"></clr-icon>
-        Come on logging
+        Записаны
       </div>
       <div class="card-block">
-        <div class="card-title">
-          Objects: {{cardsData.logging}}
+        <div class="card-title" style="font-size: 180%">
+          Объекты: {{cardsData.logging}}
         </div>
         <!--<div class="card-text">-->
           <!---->
@@ -44,13 +44,13 @@
   <!--third-->
   <div class="clr-col-lg-3">
     <div class="card">
-      <div class="card-header">
+      <div class="card-header" style="font-size: 190%">
         <clr-icon shape="table"></clr-icon>
-        Active tables
+        Активные таблицы
       </div>
       <div class="card-block">
-        <div class="card-title">
-          Tables: {{cardsData.tables}}
+        <div class="card-title" style="font-size: 180%">
+          Таблицы: {{cardsData.tables}}
         </div>
         <!--<div class="card-text">-->
           <!---->
@@ -65,13 +65,13 @@
   <!--fourth-->
   <div class="clr-col-lg-3">
     <div class="card">
-      <div class="card-header">
+      <div class="card-header" style="font-size: 190%">
         <clr-icon shape="hourglass"></clr-icon>
-        Last actions {{cardsData.changed.toLocaleDateString()}}
+        Последнее событие {{cardsData.changed.toLocaleDateString()}}
       </div>
       <div class="card-block">
-        <div class="card-title">
-          Data: {{cardsData.data}} {{cardsData.type_of}}
+        <div class="card-title" style="font-size: 180%">
+          Данные: {{cardsData.data}} {{cardsData.type_of}}
         </div>
         <!--<div class="card-text">-->
           <!---->
@@ -88,21 +88,21 @@
 <div class="clr-row">
   <div class="clr-col-lg-8">
     <div class="card">
-      <div class="card-header">
-        All action
+      <div class="card-header" style="font-size: 190%">
+        Все действия
       </div>
       <div class="card-block">
         <clr-datagrid>
-          <clr-dg-column>Table name</clr-dg-column>
-          <clr-dg-column>Data</clr-dg-column>
-          <clr-dg-column>Previous</clr-dg-column>
-          <clr-dg-column>Action</clr-dg-column>
+          <clr-dg-column style="font-size: 140%">Таблицы</clr-dg-column>
+          <clr-dg-column style="font-size: 140%">Данные</clr-dg-column>
+          <clr-dg-column style="font-size: 140%">Прежней</clr-dg-column>
+          <clr-dg-column style="font-size: 140%">Событие</clr-dg-column>
 
           <clr-dg-row *clrDgItems="let actionData of allActionList" [clrDgItem]="actionData">
-            <clr-dg-cell>{{actionData.table_name}}</clr-dg-cell>
-            <clr-dg-cell>{{actionData.data}}</clr-dg-cell>
-            <clr-dg-cell>{{actionData.previous}}</clr-dg-cell>
-            <clr-dg-cell>{{actionData.action}}</clr-dg-cell>
+            <clr-dg-cell style="font-size: 130%">{{actionData.table_name}}</clr-dg-cell>
+            <clr-dg-cell style="font-size: 130%">{{actionData.data}}</clr-dg-cell>
+            <clr-dg-cell style="font-size: 130%">{{actionData.previous}}</clr-dg-cell>
+            <clr-dg-cell style="font-size: 130%">{{actionData.action}}</clr-dg-cell>
           </clr-dg-row>
         </clr-datagrid>
 
@@ -112,8 +112,8 @@
   <!------------------------------------------------------------------->
   <div class="clr-col-lg-4">
     <div class="card">
-      <div class="card-header">
-        Recovery statistics
+      <div class="card-header" style="font-size: 180%">
+        Статистика активности
       </div>
       <div class="card-block">
         <div id="chartContainer"
@@ -127,16 +127,16 @@
       <div class="card-footer">
 
         <clr-dropdown>
-          <button type="button" class="dropdown-toggle btn btn-link" clrDropdownTrigger>
-            Choose time interval
+          <button type="button" class="dropdown-toggle btn btn-link" clrDropdownTrigger style="font-size: 140%">
+            Временной интервал
             <clr-icon shape="caret up"></clr-icon>
           </button>
 
           <clr-dropdown-menu  clrPosition="top-right" *clrIfOpen>
-            <h4 class="dropdown-header">Time interval</h4>
-            <button type="button" class="dropdown-item">Day</button>
-            <button type="button" class="dropdown-item">Week</button>
-            <button type="button" class="dropdown-item">Month</button>
+            <h4 class="dropdown-header">Период</h4>
+            <button type="button" class="dropdown-item">День</button>
+            <button type="button" class="dropdown-item">Неделя</button>
+            <button type="button" class="dropdown-item">Месяц</button>
           </clr-dropdown-menu>
         </clr-dropdown>
 
